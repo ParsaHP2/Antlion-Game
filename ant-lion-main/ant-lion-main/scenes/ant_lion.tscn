@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvkqohhxlynql"]
+
+[ext_resource type="PackedScene" uid="uid://bx1e7k5pte2u5" path="res://blends/ant-lion.blend" id="1_g3tj7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_hd8f7"]
+radius = 5.5
+
+[node name="AntLion" instance=ExtResource("1_g3tj7")]
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+shape = SubResource("SphereShape3D_hd8f7")

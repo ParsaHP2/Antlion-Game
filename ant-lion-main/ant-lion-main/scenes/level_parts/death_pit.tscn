@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://qxgwhtwx3ccd"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8ofwq"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t6owh"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tmmvy"]
+size = Vector3(1000, 1, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e3lmg"]
+size = Vector3(1000, 1, 1000)
+
+[node name="DeathPit" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
+mesh = SubResource("PlaneMesh_8ofwq")
+surface_material_override/0 = SubResource("StandardMaterial3D_t6owh")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_tmmvy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_e3lmg")

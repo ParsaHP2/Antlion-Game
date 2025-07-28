@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://0xo2ccuv30x8"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_b68qv"]
+[ext_resource type="Texture2D" uid="uid://cy5iwc8jyecth" path="res://AntLion-Assets/MainMenu/Background.jpg" id="2_b77sc"]
+[ext_resource type="Texture2D" uid="uid://fue5ofnd1dwo" path="res://AntLion-Assets/MainMenu/ANTLION.png" id="3_hhj4x"]
+[ext_resource type="Texture2D" uid="uid://cqq082iy0tnm7" path="res://AntLion-Assets/MainMenu/ExitButton.png" id="4_j7qnu"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b68qv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_b77sc")
+expand_mode = 1
+
+[node name="Title" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -491.0
+offset_top = -47.0
+offset_right = 479.0
+offset_bottom = 154.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_hhj4x")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 191.0
+offset_top = -259.0
+offset_right = 358.0
+offset_bottom = 206.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Design
+Jayson Tram
+Parsa Hosseinpour
+Sheyda Aghadaee
+Cooper Leong
+
+Programming
+Jayson Tram
+Parsa Hosseinpour
+
+Modelling
+Jayson Tram
+
+User Interface Design
+Sheyda Aghadaee
+
+Level Design
+Cooper Leong"
+horizontal_alignment = 1
+
+[node name="Return" type="TextureButton" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 107.0
+offset_bottom = 107.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("4_j7qnu")
+
+[connection signal="pressed" from="CanvasLayer/Return" to="." method="_on_return_pressed"]

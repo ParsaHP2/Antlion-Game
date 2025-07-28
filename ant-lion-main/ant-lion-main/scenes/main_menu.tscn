@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://vv0dx43ogxrq"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_j12du"]
+[ext_resource type="Texture2D" uid="uid://cy5iwc8jyecth" path="res://AntLion-Assets/MainMenu/Background.jpg" id="2_km52d"]
+[ext_resource type="Texture2D" uid="uid://fue5ofnd1dwo" path="res://AntLion-Assets/MainMenu/ANTLION.png" id="3_q4rgh"]
+[ext_resource type="Texture2D" uid="uid://dblllosrojhef" path="res://AntLion-Assets/MainMenu/PlayButton.png" id="4_53ltp"]
+[ext_resource type="Texture2D" uid="uid://cqq082iy0tnm7" path="res://AntLion-Assets/MainMenu/ExitButton.png" id="5_m4i77"]
+[ext_resource type="Texture2D" uid="uid://52yd0gurkwug" path="res://AntLion-Assets/MainMenu/SettingsButton.png" id="6_35f2m"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j12du")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_km52d")
+expand_mode = 1
+
+[node name="Title" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -243.0
+offset_top = 144.0
+offset_right = 727.0
+offset_bottom = 345.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_q4rgh")
+
+[node name="Play" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = 19.0
+offset_right = 233.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("4_53ltp")
+
+[node name="Quit" type="TextureButton" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 107.0
+offset_bottom = 107.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("5_m4i77")
+
+[node name="Credits" type="TextureButton" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 113.0
+offset_right = 83.0
+offset_bottom = 144.0
+scale = Vector2(0.75, 0.75)
+texture_normal = ExtResource("6_35f2m")
+
+[connection signal="pressed" from="CanvasLayer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Credits" to="." method="_on_credits_pressed"]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdqd0g3cmxhvb"]
+
+[ext_resource type="Script" path="res://scripts/GravityPlat.gd" id="1_1cp6e"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pc4nb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmxmf"]
+albedo_color = Color(0.670124, 0.351191, 0.755979, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xeex7"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5atid"]
+
+[node name="GravityPlatform" type="Node3D"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+transform = Transform3D(0.799997, 0, -0.599998, 0, 1, 0, 0.599998, 0, 0.799997, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D"]
+mesh = SubResource("CylinderMesh_pc4nb")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmxmf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+shape = SubResource("CylinderShape3D_xeex7")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.799997, 0, -0.599997, 0, 1, 0, 0.599997, 0, 0.799997, 0, 0.0666667, 0)
+collision_layer = 5
+collision_mask = 5
+gravity_space_override = 3
+gravity_point = true
+gravity_point_unit_distance = 3.866
+gravity_point_center = Vector3(1, -1, 0)
+gravity_direction = Vector3(1, -1, 0)
+gravity = 25.0
+linear_damp_space_override = 3
+angular_damp_space_override = 3
+angular_damp = 0.0
+script = ExtResource("1_1cp6e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_5atid")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://4xpfmtwcjv43"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pc4nb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmxmf"]
+albedo_color = Color(0.378839, 0.761896, 0.516813, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xeex7"]
+
+[sub_resource type="Curve3D" id="Curve3D_57j5g"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.5, 0, -2, 0, 0, 0, 0, 0, 0, -1.5, 0, -2),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_vrgbg"]
+resource_name = "MovingPlat"
+length = 9.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.9231]
+}
+
+[sub_resource type="Animation" id="Animation_vpggs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pgx6g"]
+_data = {
+"MovingPlat": SubResource("Animation_vrgbg"),
+"RESET": SubResource("Animation_vpggs")
+}
+
+[node name="MovingPlatform" type="Node3D"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+transform = Transform3D(0.799997, 0, -0.599998, 0, 1, 0, 0.599998, 0, 0.799997, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D"]
+mesh = SubResource("CylinderMesh_pc4nb")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmxmf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+shape = SubResource("CylinderShape3D_xeex7")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_57j5g")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(0.799997, 0, -0.599998, 0, 1, 0, 0.599998, 0, 0.799997, 0, 0, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Path3D/PathFollow3D"]
+remote_path = NodePath("../../../AnimatableBody3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pgx6g")
+}
+autoplay = "MovingPlat"

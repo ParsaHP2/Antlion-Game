@@ -1,0 +1,207 @@
+[gd_scene load_steps=8 format=3 uid="uid://csa6jhkfpqegf"]
+
+[ext_resource type="Script" path="res://scripts/level_ui.gd" id="1_y76be"]
+[ext_resource type="Texture2D" uid="uid://b08acqveojq4e" path="res://AntLion-Assets/LevelTransition-Failed/TextBox(with text).png" id="2_ipr68"]
+[ext_resource type="Texture2D" uid="uid://bl1nmpkv2d7uc" path="res://AntLion-Assets/LevelTransition-Failed/RestartButton.png" id="3_lbevu"]
+[ext_resource type="Texture2D" uid="uid://dq6rjsb1up2kx" path="res://AntLion-Assets/LevelTransition-Failed/LevelMenuButton.png" id="4_vw38b"]
+[ext_resource type="Texture2D" uid="uid://cf2xuh1tymj6v" path="res://AntLion-Assets/LevelTransition-Failed/ExitButton.png" id="5_i8wjb"]
+[ext_resource type="Texture2D" uid="uid://detguabj5optt" path="res://AntLion-Assets/LevelTransition-Won/text).png" id="6_sss12"]
+[ext_resource type="Texture2D" uid="uid://b3trjh8miyfga" path="res://AntLion-Assets/LevelTransition-Won/NextLevelButton.png" id="7_cu3ha"]
+
+[node name="LevelUI" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_y76be")
+
+[node name="Pause" type="Label" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = -24.5
+offset_right = 74.5
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ReturnToMenu" type="Button" parent="Pause"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.5
+offset_top = 49.5
+offset_right = 65.5
+offset_bottom = 80.5
+grow_horizontal = 2
+text = "Return to menu"
+
+[node name="Lose" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -124.0
+offset_right = 702.0
+offset_bottom = 385.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ipr68")
+
+[node name="Retry" type="TextureButton" parent="Lose"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 438.0
+offset_right = 649.0
+offset_bottom = 575.0
+texture_normal = ExtResource("3_lbevu")
+
+[node name="LevelSelect" type="TextureButton" parent="Lose"]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 438.0
+offset_right = 415.0
+offset_bottom = 575.0
+texture_normal = ExtResource("4_vw38b")
+
+[node name="ReturnToMenu" type="TextureButton" parent="Lose"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -604.0
+offset_top = 179.0
+offset_right = -467.0
+offset_bottom = 316.0
+grow_vertical = 0
+texture_normal = ExtResource("5_i8wjb")
+
+[node name="Win" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -120.0
+offset_right = 702.0
+offset_bottom = 389.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_sss12")
+
+[node name="Continue" type="TextureButton" parent="Win"]
+layout_mode = 0
+offset_left = 650.0
+offset_top = 430.0
+offset_right = 787.0
+offset_bottom = 567.0
+texture_normal = ExtResource("7_cu3ha")
+
+[node name="Retry" type="TextureButton" parent="Win"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 430.0
+offset_right = 553.0
+offset_bottom = 567.0
+texture_normal = ExtResource("3_lbevu")
+
+[node name="LevelSelect" type="TextureButton" parent="Win"]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 430.0
+offset_right = 320.0
+offset_bottom = 567.0
+texture_normal = ExtResource("4_vw38b")
+
+[node name="ReturnToMenu" type="TextureButton" parent="Win"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -604.0
+offset_top = 179.0
+offset_right = -467.0
+offset_bottom = 316.0
+grow_vertical = 0
+texture_normal = ExtResource("5_i8wjb")
+
+[node name="WinFinal" type="TextureRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -120.0
+offset_right = 702.0
+offset_bottom = 389.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_sss12")
+
+[node name="Retry" type="TextureButton" parent="WinFinal"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 430.0
+offset_right = 649.0
+offset_bottom = 567.0
+texture_normal = ExtResource("3_lbevu")
+
+[node name="LevelSelect" type="TextureButton" parent="WinFinal"]
+layout_mode = 0
+offset_left = 278.0
+offset_top = 430.0
+offset_right = 416.0
+offset_bottom = 567.0
+texture_normal = ExtResource("4_vw38b")
+
+[node name="ReturnToMenu" type="TextureButton" parent="WinFinal"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -604.0
+offset_top = 179.0
+offset_right = -467.0
+offset_bottom = 316.0
+grow_vertical = 0
+texture_normal = ExtResource("5_i8wjb")
+
+[node name="TimeLeft" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Time Remaining: 60"
+
+[node name="CandyLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[connection signal="pressed" from="Pause/ReturnToMenu" to="." method="_on_return_to_menu_pressed"]
+[connection signal="pressed" from="Lose/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Lose/LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="Lose/ReturnToMenu" to="." method="_on_return_to_menu_pressed"]
+[connection signal="pressed" from="Win/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="Win/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Win/LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="Win/ReturnToMenu" to="." method="_on_return_to_menu_pressed"]
+[connection signal="pressed" from="WinFinal/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="WinFinal/LevelSelect" to="." method="_on_level_select_pressed"]
+[connection signal="pressed" from="WinFinal/ReturnToMenu" to="." method="_on_return_to_menu_pressed"]

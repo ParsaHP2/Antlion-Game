@@ -1,0 +1,175 @@
+[gd_scene load_steps=17 format=3 uid="uid://b7amdlpa1ynd2"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_8b5ux"]
+[ext_resource type="PackedScene" uid="uid://cb14fi0tm1oj8" path="res://scenes/ant.tscn" id="2_ie00e"]
+[ext_resource type="PackedScene" uid="uid://cnp1xhh4e2rcw" path="res://scenes/food.tscn" id="3_3uhns"]
+[ext_resource type="PackedScene" uid="uid://bh8lil5hknhy" path="res://scenes/level_parts/platform.tscn" id="4_go2le"]
+[ext_resource type="PackedScene" uid="uid://br64d54u6l7xa" path="res://scenes/level_parts/rectangle_platform.tscn" id="5_cenwv"]
+[ext_resource type="PackedScene" uid="uid://dyikdiipad1ft" path="res://scenes/level_parts/SlipperyPlatform.tscn" id="6_rscxh"]
+[ext_resource type="PackedScene" uid="uid://coqnkpl4yxbxn" path="res://scenes/candy.tscn" id="6_womdi"]
+[ext_resource type="PackedScene" uid="uid://dvkqohhxlynql" path="res://scenes/ant_lion.tscn" id="7_5evih"]
+[ext_resource type="PackedScene" uid="uid://qxgwhtwx3ccd" path="res://scenes/level_parts/death_pit.tscn" id="8_lsfwo"]
+[ext_resource type="PackedScene" uid="uid://bcevy84nyohxw" path="res://scenes/level_parts/goal.tscn" id="9_5ldxt"]
+[ext_resource type="PackedScene" uid="uid://deub6kj1mupcm" path="res://blends/environment.blend" id="10_r4ab1"]
+[ext_resource type="PackedScene" uid="uid://csa6jhkfpqegf" path="res://scenes/level_ui.tscn" id="11_7u0k4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f4yb0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_j8orj"]
+sky_material = SubResource("ProceduralSkyMaterial_f4yb0")
+
+[sub_resource type="Environment" id="Environment_kodal"]
+background_mode = 2
+sky = SubResource("Sky_j8orj")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Curve3D" id="Curve3D_2tqme"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -100, 0, 0, 0, 0, 0, 0, -35.0811, 0.289469, -99.3935, 7.0158, -0.161538, 0.225166, -7.0158, 0.161538, -0.225166, -46.8186, 6.95306, -99.9335, 0, 0, 0, 0, 0, 0, -59.7298, 0.222604, -99.7368, 0, 0, 0, 0, 0, 0, -59.6644, 0.415741, -121.663, -5.69613, 0.615621, 7.41464, 5.69613, -0.615621, -7.41464, -47.4036, 6.93842, -137.707, 0, 0, 0, 0, 0, 0, -36.685, -0.35445, -151.733, 0, 0, 0, 0, 0, 0, 10.3336, 0.289894, -151.998, 0, 0, 0, 0, 0, 0, 9.26864, 0.331258, -192.017, 5.68249, -0.201874, 7.62933, -5.68249, 0.201874, -7.62933, -1.17883, 6.37697, -202.326, 0, 0, 0, 0, 0, 0, -12.9232, -0.138901, -218.411, 0, 0, 0, 0, 0, 0, -46.2876, 0.787478, -251.303, 0, 0, 0, 0, 0, 0, -11.0973, 0.824374, -285.821, 0, 0, 0, 0, 0, 0, 13.2637, 0.547862, -262.841, 0, 0, 0, 0, 0, 0, 28.8517, 0.307792, -279.02),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 16
+
+[node name="Level4" type="Node3D" node_paths=PackedStringArray("food")]
+script = ExtResource("1_8b5ux")
+food = NodePath("Ants/StartingAnt/Food")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kodal")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ants" type="Node3D" parent="."]
+
+[node name="StartingAnt" parent="Ants" instance=ExtResource("2_ie00e")]
+
+[node name="Food" parent="Ants/StartingAnt" instance=ExtResource("3_3uhns")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Ant" parent="Ants" instance=ExtResource("2_ie00e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, -111)
+
+[node name="Ant2" parent="Ants" instance=ExtResource("2_ie00e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -1, -177)
+
+[node name="Ant3" parent="Ants" instance=ExtResource("2_ie00e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.3, -273)
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="Platform" parent="Platforms" instance=ExtResource("4_go2le")]
+skeleton = NodePath("../..")
+
+[node name="Platform2" parent="Platforms" instance=ExtResource("4_go2le")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -37, -15.543, -111)
+skeleton = NodePath("../..")
+
+[node name="Platform3" parent="Platforms" instance=ExtResource("4_go2le")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -13, -16.543, -177)
+skeleton = NodePath("../..")
+
+[node name="EndPlatform" parent="Platforms" instance=ExtResource("4_go2le")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 3, -15.543, -273)
+skeleton = NodePath("../..")
+
+[node name="AntLionPlatform" parent="Platforms" instance=ExtResource("4_go2le")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, -15.5435, 40)
+skeleton = NodePath("../..")
+
+[node name="PathToAntLion" parent="Platforms" instance=ExtResource("5_cenwv")]
+transform = Transform3D(-1.31134e-07, 0, -1, 0, 1, 0, 3, 0, -4.37114e-08, 0, -15.5, 20)
+skeleton = NodePath("../..")
+
+[node name="RectanglePlatform5" parent="Platforms" instance=ExtResource("5_cenwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 3.15, -59.4131, -15.5, -69.5934)
+skeleton = NodePath("../..")
+
+[node name="RectanglePlatform15" parent="Platforms" instance=ExtResource("5_cenwv")]
+transform = Transform3D(-4.37114e-08, 0, -3.15, 0, 1, 0, 1, 0, -1.37691e-07, -12.4131, 4.5, -258.593)
+skeleton = NodePath("../..")
+
+[node name="RectanglePlatform2" parent="Platforms" instance=ExtResource("5_cenwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.945, -0.413083, -15.5, -47.5934)
+skeleton = NodePath("../..")
+
+[node name="RectanglePlatform3" parent="Platforms" instance=ExtResource("5_cenwv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.945, -0.413083, -15.5, -58.5934)
+skeleton = NodePath("../..")
+
+[node name="RectanglePlatform14" parent="Platforms" instance=ExtResource("5_cenwv")]
+transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 0.2835, -59.4131, -15.5, -50.5934)
+skeleton = NodePath("../..")
+
+[node name="RectanglePlatform7" parent="Platforms" instance=ExtResource("5_cenwv")]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.945, 10.5869, -15.5, -111.593)
+skeleton = NodePath("../..")
+
+[node name="RectanglePlatform11" parent="Platforms" instance=ExtResource("5_cenwv")]
+transform = Transform3D(0.707107, 0, -0.668216, 0, 1, 0, 0.707107, 0, 0.668216, -19.5482, -15.5, -237.69)
+skeleton = NodePath("../..")
+
+[node name="SlipperyPlatform" parent="Platforms" instance=ExtResource("6_rscxh")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 29.04, -0.413081, -15.7072, -24.186)
+
+[node name="SlipperyPlatform2" parent="Platforms" instance=ExtResource("6_rscxh")]
+transform = Transform3D(-6.55671e-07, 0, 40.656, 0, 15, 0, -15, 0, -1.77713e-06, -27.4131, -15.7072, -59.186)
+
+[node name="SlipperyPlatform3" parent="Platforms" instance=ExtResource("6_rscxh")]
+transform = Transform3D(-6.55671e-07, 0, 31.3051, 0, 15, 0, -15, 0, -1.36839e-06, -12.4131, -15.7072, -111.186)
+
+[node name="SlipperyPlatform4" parent="Platforms" instance=ExtResource("6_rscxh")]
+transform = Transform3D(-8.4, 0, -3.36953e-06, 0, 15, 0, 7.34351e-07, 0, -38.5429, 10.5869, -15.7072, -138.186)
+
+[node name="SlipperyPlatform5" parent="Platforms" instance=ExtResource("6_rscxh")]
+transform = Transform3D(-5.9397, 0, -17.9101, 0, 15, 0, 5.9397, 0, -17.9101, -28.4131, -15.7072, -193.186)
+
+[node name="SlipperyPlatform6" parent="Platforms" instance=ExtResource("6_rscxh")]
+transform = Transform3D(-5.9397, 0, 20.443, 0, 15, 0, -5.9397, 0, -20.443, -39.4131, -15.7072, -219.186)
+
+[node name="SlipperyPlatform7" parent="Platforms" instance=ExtResource("6_rscxh")]
+transform = Transform3D(5.5197, 0, 21.3512, 0, 15, 0, -5.5197, 0, 21.3512, -4.41308, -15.7072, -238.186)
+
+[node name="SlipperyPlatform8" parent="Platforms" instance=ExtResource("6_rscxh")]
+transform = Transform3D(-5.9397, 0, 17.9101, 0, 15, 0, -5.9397, 0, -17.9101, 17.5869, -15.7072, -229.186)
+
+[node name="Candies" type="Node3D" parent="."]
+
+[node name="Candy1" parent="Candies" instance=ExtResource("6_womdi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.3408, 0.2, -50.4328)
+
+[node name="Candy2" parent="Candies" instance=ExtResource("6_womdi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.8605, 0.473203, -153.225)
+
+[node name="Candy3" parent="Candies" instance=ExtResource("6_womdi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9619, 0.424943, -248.168)
+
+[node name="AntLionPath" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 41)
+curve = SubResource("Curve3D_2tqme")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="AntLionPath"]
+transform = Transform3D(1, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 0, 0)
+rotation_mode = 0
+
+[node name="AntLion" parent="AntLionPath/PathFollow3D" instance=ExtResource("7_5evih")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="DeathPit" parent="." instance=ExtResource("8_lsfwo")]
+
+[node name="Goal" parent="." instance=ExtResource("9_5ldxt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -280)
+
+[node name="environment" parent="." instance=ExtResource("10_r4ab1")]
+transform = Transform3D(3.4021, 0, 0, 0, 3.05681, 0, 0, 0, 12, 0, -78.0795, -135.461)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 85.7116, -131.052)
+omni_range = 295.294
+omni_attenuation = 0.25
+
+[node name="LevelUI" parent="." instance=ExtResource("11_7u0k4")]

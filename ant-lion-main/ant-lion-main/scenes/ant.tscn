@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cb14fi0tm1oj8"]
+
+[ext_resource type="PackedScene" uid="uid://71gvymddmsnw" path="res://blends/ant.blend" id="1_2gujk"]
+[ext_resource type="Script" path="res://scripts/ant.gd" id="1_6dfmj"]
+[ext_resource type="AudioStream" uid="uid://cwsu30kisv6wp" path="res://audio/425704__moogy73__woosh_low_short_01.wav" id="3_bv0e0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_l2ori"]
+size = Vector3(1.5, 0.5, 2.25)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7pbhq"]
+radius = 2.0
+height = 4.0
+
+[node name="Ant" type="CharacterBody3D"]
+collision_layer = 4
+script = ExtResource("1_6dfmj")
+
+[node name="Model" parent="." instance=ExtResource("1_2gujk")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+shape = SubResource("BoxShape3D_l2ori")
+
+[node name="GrabHitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GrabHitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.2)
+shape = SubResource("CapsuleShape3D_7pbhq")
+
+[node name="ThrowSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_bv0e0")
+
+[connection signal="body_entered" from="GrabHitbox" to="." method="_on_grab_hitbox_body_entered"]

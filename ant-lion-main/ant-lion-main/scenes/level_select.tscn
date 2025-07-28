@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://clrkf7wltxp18"]
+
+[ext_resource type="Script" path="res://scripts/level_select.gd" id="1_rf7h2"]
+[ext_resource type="Texture2D" uid="uid://cy5iwc8jyecth" path="res://AntLion-Assets/MainMenu/Background.jpg" id="2_q3hvv"]
+[ext_resource type="Texture2D" uid="uid://cf2xuh1tymj6v" path="res://AntLion-Assets/LevelTransition-Failed/ExitButton.png" id="3_cm73e"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rf7h2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q3hvv")
+expand_mode = 1
+
+[node name="ReturnToMenu" type="TextureButton" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -104.0
+offset_right = 167.0
+offset_bottom = 33.0
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("3_cm73e")
+
+[node name="Levels" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -313.5
+offset_top = -41.5
+offset_right = 313.5
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button1" type="Button" parent="CanvasLayer/Levels"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Levels"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2"
+
+[node name="Button3" type="Button" parent="CanvasLayer/Levels"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3"
+
+[node name="Button4" type="Button" parent="CanvasLayer/Levels"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "4"
+
+[node name="Button5" type="Button" parent="CanvasLayer/Levels"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "5"
+
+[node name="Button6" type="Button" parent="CanvasLayer/Levels"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "6"
+
+[node name="Button7" type="Button" parent="CanvasLayer/Levels"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "7"
+
+[node name="Button8" type="Button" parent="CanvasLayer/Levels"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "8"
+
+[connection signal="pressed" from="CanvasLayer/ReturnToMenu" to="." method="_on_return_to_menu_pressed"]

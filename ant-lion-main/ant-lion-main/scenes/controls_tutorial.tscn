@@ -1,0 +1,133 @@
+[gd_scene load_steps=2 format=3 uid="uid://4r0fc2il4sdw"]
+
+[ext_resource type="Texture2D" uid="uid://ccpec1ron3pkm" path="res://mouse_movement.png" id="1_c3il1"]
+
+[node name="ControlsTutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Movement" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="W" type="ColorRect" parent="Movement"]
+layout_mode = 0
+offset_left = -271.0
+offset_top = -53.0
+offset_right = -231.0
+offset_bottom = -13.0
+scale = Vector2(2, 2)
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Movement/W"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="S" type="ColorRect" parent="Movement"]
+layout_mode = 0
+offset_left = -271.0
+offset_top = 58.0
+offset_right = -231.0
+offset_bottom = 98.0
+scale = Vector2(2, 2)
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Movement/S"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "S"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="A" type="ColorRect" parent="Movement"]
+layout_mode = 0
+offset_left = -374.0
+offset_top = 58.0
+offset_right = -334.0
+offset_bottom = 98.0
+scale = Vector2(2, 2)
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Movement/A"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "A"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="D" type="ColorRect" parent="Movement"]
+layout_mode = 0
+offset_left = -166.0
+offset_top = 58.0
+offset_right = -126.0
+offset_bottom = 98.0
+scale = Vector2(2, 2)
+mouse_filter = 1
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Movement/D"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "D"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MouseMovement" type="Sprite2D" parent="Movement"]
+position = Vector2(263, 27)
+texture = ExtResource("1_c3il1")
+
+[node name="Throw" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -186.0
+offset_top = 187.0
+offset_right = 3.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+mouse_filter = 1
+text = "Hold the Mouse1 Button"

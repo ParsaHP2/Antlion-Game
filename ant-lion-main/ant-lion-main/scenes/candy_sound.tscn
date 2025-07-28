@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwut3lew4f1fb"]
+
+[ext_resource type="AudioStream" uid="uid://1qnhcomw83yd" path="res://audio/coin-pickup-98269.mp3" id="1_mps40"]
+
+[node name="CandySound" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_mps40")
+volume_db = 12.0

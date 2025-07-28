@@ -1,0 +1,289 @@
+[gd_scene load_steps=27 format=3 uid="uid://bmduu8ancx8l7"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_u46ab"]
+[ext_resource type="PackedScene" uid="uid://bh8lil5hknhy" path="res://scenes/level_parts/platform.tscn" id="2_oeuor"]
+[ext_resource type="PackedScene" uid="uid://bcevy84nyohxw" path="res://scenes/level_parts/goal.tscn" id="3_ksw7v"]
+[ext_resource type="PackedScene" uid="uid://dvkqohhxlynql" path="res://scenes/ant_lion.tscn" id="4_jmg74"]
+[ext_resource type="PackedScene" uid="uid://csa6jhkfpqegf" path="res://scenes/level_ui.tscn" id="4_osrgc"]
+[ext_resource type="PackedScene" uid="uid://cb14fi0tm1oj8" path="res://scenes/ant.tscn" id="5_5o23g"]
+[ext_resource type="PackedScene" uid="uid://cnp1xhh4e2rcw" path="res://scenes/food.tscn" id="6_dlv4g"]
+[ext_resource type="PackedScene" uid="uid://br64d54u6l7xa" path="res://scenes/level_parts/rectangle_platform.tscn" id="6_taujo"]
+[ext_resource type="PackedScene" uid="uid://qxgwhtwx3ccd" path="res://scenes/level_parts/death_pit.tscn" id="8_04uwh"]
+[ext_resource type="PackedScene" uid="uid://coqnkpl4yxbxn" path="res://scenes/candy.tscn" id="9_wri23"]
+[ext_resource type="PackedScene" uid="uid://deub6kj1mupcm" path="res://blends/environment.blend" id="10_onc48"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f4yb0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_j8orj"]
+sky_material = SubResource("ProceduralSkyMaterial_f4yb0")
+
+[sub_resource type="Environment" id="Environment_kodal"]
+background_mode = 2
+sky = SubResource("Sky_j8orj")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pc4nb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmxmf"]
+albedo_color = Color(0.378839, 0.761896, 0.516813, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xeex7"]
+
+[sub_resource type="Curve3D" id="Curve3D_p883u"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1.5),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_vrgbg"]
+resource_name = "MovingPlat"
+length = 9.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.9231]
+}
+
+[sub_resource type="Animation" id="Animation_vpggs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lh4w2"]
+_data = {
+"MovingPlat": SubResource("Animation_vrgbg"),
+"RESET": SubResource("Animation_vpggs")
+}
+
+[sub_resource type="Curve3D" id="Curve3D_48smm"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1.5, 0, -2, 0, 0, 0, 0, 0, 0, -1.5, 0, -2, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[sub_resource type="Animation" id="Animation_ldshj"]
+resource_name = "MovingPlat"
+length = 15.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_53upp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ybn3k"]
+_data = {
+"MovingPlat": SubResource("Animation_ldshj"),
+"RESET": SubResource("Animation_53upp")
+}
+
+[sub_resource type="Curve3D" id="Curve3D_xa8nx"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -40, 0, 0, 0, 0, 0, 0, -3, 0.30304, -56, 0, 0, 0, 0, 0, 0, 8, 0, -66, 0, 0, 0, 0, 0, 0, 19, 1, -74, 0, 0, 0, 0, 0, 0, 5, 0, -83, 1.35617, -0.221068, 6.18788, -1.35617, 0.221068, -6.18788, 2.87396, 7.84342, -94.0554, 0, 0, 0, 0, 0, 0, 0, 0, -109, 0, 0, 0, 0, 0, 0, -11.0935, -0.14654, -119.799, -3.52664, -0.0721264, 8.46027, 3.52664, 0.0721264, -8.46027, -4.1296, 8.12074, -136.989, 0, 0, 0, 0, 0, 0, 2.3428, 0.72898, -153),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 11
+
+[node name="Level2" type="Node3D" node_paths=PackedStringArray("food")]
+script = ExtResource("1_u46ab")
+food = NodePath("Ants/StartingAnt/Food")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kodal")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ants" type="Node3D" parent="."]
+
+[node name="StartingAnt" parent="Ants" instance=ExtResource("5_5o23g")]
+
+[node name="Food" parent="Ants/StartingAnt" instance=ExtResource("6_dlv4g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Ant" parent="Ants" instance=ExtResource("5_5o23g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -68)
+
+[node name="Ant2" parent="Ants" instance=ExtResource("5_5o23g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -192)
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="Platform" parent="Platforms" instance=ExtResource("2_oeuor")]
+skeleton = NodePath("../..")
+
+[node name="Platform2" parent="Platforms" instance=ExtResource("2_oeuor")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, -16.543, -68)
+skeleton = NodePath("../..")
+
+[node name="EndPlatform" parent="Platforms" instance=ExtResource("2_oeuor")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, -16.543, -192)
+skeleton = NodePath("../..")
+
+[node name="AntLionPlatform" parent="Platforms" instance=ExtResource("2_oeuor")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, -15.5435, 40)
+skeleton = NodePath("../..")
+
+[node name="RectanglePlatform" parent="Platforms" instance=ExtResource("6_taujo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -16, -15)
+
+[node name="RectanglePlatform2" parent="Platforms" instance=ExtResource("6_taujo")]
+transform = Transform3D(1.125, 0, 0, 0, 1, 0, 0, 0, 0.5, 8, -16, -25)
+
+[node name="RectanglePlatform3" parent="Platforms" instance=ExtResource("6_taujo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -15, -33)
+
+[node name="RectanglePlatform4" parent="Platforms" instance=ExtResource("6_taujo")]
+transform = Transform3D(3.375, 0, 0, 0, 1, 0, 0, 0, 0.35, 6.3721, -16, -42)
+
+[node name="RectanglePlatform6" parent="Platforms" instance=ExtResource("6_taujo")]
+transform = Transform3D(2.3625, 0, 0, 0, 1, 0, 0, 0, 0.525, -11.6279, -16, -79.3322)
+
+[node name="RectanglePlatform5" parent="Platforms" instance=ExtResource("6_taujo")]
+transform = Transform3D(0.3375, 0, 0, 0, 1, 0, 0, 0, 0.35, -13.6279, -16, -42)
+
+[node name="RectanglePlatform7" parent="Platforms" instance=ExtResource("6_taujo")]
+transform = Transform3D(0.81, 0, 0, 0, 1, 0, 0, 0, 0.5, 2, -16, -112)
+
+[node name="PathToAntLion" parent="Platforms" instance=ExtResource("6_taujo")]
+transform = Transform3D(-1.31134e-07, 0, -1, 0, 1, 0, 3, 0, -4.37114e-08, 0, -15.5, 20)
+skeleton = NodePath("../..")
+
+[node name="MovingPlatform" type="Node3D" parent="Platforms"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -10.1239, -16.5, -90.1317)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Platforms/MovingPlatform"]
+transform = Transform3D(0.999997, 0, 0, 0, 1, 0, 0, 0, 0.999997, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/MovingPlatform/AnimatableBody3D"]
+mesh = SubResource("CylinderMesh_pc4nb")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmxmf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/MovingPlatform/AnimatableBody3D"]
+shape = SubResource("CylinderShape3D_xeex7")
+
+[node name="Path3D" type="Path3D" parent="Platforms/MovingPlatform"]
+curve = SubResource("Curve3D_p883u")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/MovingPlatform/Path3D"]
+transform = Transform3D(0.999997, 0, 0, 0, 1, 0, 0, 0, 0.999997, 0, 0, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Platforms/MovingPlatform/Path3D/PathFollow3D"]
+remote_path = NodePath("../../../AnimatableBody3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/MovingPlatform"]
+libraries = {
+"": SubResource("AnimationLibrary_lh4w2")
+}
+autoplay = "MovingPlat"
+
+[node name="MovingPlatform2" type="Node3D" parent="Platforms"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 2.87605, -16.5, -122.632)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Platforms/MovingPlatform2"]
+transform = Transform3D(0.799997, 0, -0.599998, 0, 1, 0, 0.599998, 0, 0.799997, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/MovingPlatform2/AnimatableBody3D"]
+mesh = SubResource("CylinderMesh_pc4nb")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmxmf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/MovingPlatform2/AnimatableBody3D"]
+shape = SubResource("CylinderShape3D_xeex7")
+
+[node name="Path3D" type="Path3D" parent="Platforms/MovingPlatform2"]
+curve = SubResource("Curve3D_48smm")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/MovingPlatform2/Path3D"]
+transform = Transform3D(0.799997, 0, -0.599998, 0, 1, 0, 0.599998, 0, 0.799997, 0, 0, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Platforms/MovingPlatform2/Path3D/PathFollow3D"]
+remote_path = NodePath("../../../AnimatableBody3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/MovingPlatform2"]
+libraries = {
+"": SubResource("AnimationLibrary_ybn3k")
+}
+autoplay = "MovingPlat"
+
+[node name="Candies" type="Node3D" parent="."]
+
+[node name="Candy1" parent="Candies" instance=ExtResource("9_wri23")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.14082, -0.5, -50.5328)
+
+[node name="Candy2" parent="Candies" instance=ExtResource("9_wri23")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.83947, -0.826797, -117.725)
+
+[node name="Candy3" parent="Candies" instance=ExtResource("9_wri23")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0380802, -0.575057, -164.421)
+
+[node name="AntLionPath" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 41)
+curve = SubResource("Curve3D_xa8nx")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="AntLionPath"]
+transform = Transform3D(1, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 0, 0)
+rotation_mode = 0
+
+[node name="AntLion" parent="AntLionPath/PathFollow3D" instance=ExtResource("4_jmg74")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="DeathPit" parent="." instance=ExtResource("8_04uwh")]
+
+[node name="Goal" parent="." instance=ExtResource("3_ksw7v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -199)
+
+[node name="environment" parent="." instance=ExtResource("10_onc48")]
+transform = Transform3D(2.26807, 0, 0, 0, 3.05681, 0, 0, 0, 12, 0, -78.0795, -25.4612)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 85.7116, -35.0516)
+omni_range = 295.294
+omni_attenuation = 0.25
+
+[node name="LevelUI" parent="." instance=ExtResource("4_osrgc")]

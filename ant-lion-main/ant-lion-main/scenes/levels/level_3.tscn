@@ -1,0 +1,409 @@
+[gd_scene load_steps=31 format=3 uid="uid://bywou1u8av8kg"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_54c32"]
+[ext_resource type="PackedScene" uid="uid://cb14fi0tm1oj8" path="res://scenes/ant.tscn" id="2_hvpsy"]
+[ext_resource type="PackedScene" uid="uid://cnp1xhh4e2rcw" path="res://scenes/food.tscn" id="3_lixo6"]
+[ext_resource type="PackedScene" uid="uid://dvkqohhxlynql" path="res://scenes/ant_lion.tscn" id="4_it3ro"]
+[ext_resource type="PackedScene" uid="uid://bh8lil5hknhy" path="res://scenes/level_parts/platform.tscn" id="5_2t7eg"]
+[ext_resource type="PackedScene" uid="uid://br64d54u6l7xa" path="res://scenes/level_parts/rectangle_platform.tscn" id="6_ur0mj"]
+[ext_resource type="PackedScene" uid="uid://bcevy84nyohxw" path="res://scenes/level_parts/goal.tscn" id="7_mgon1"]
+[ext_resource type="PackedScene" uid="uid://qxgwhtwx3ccd" path="res://scenes/level_parts/death_pit.tscn" id="8_v0t6g"]
+[ext_resource type="PackedScene" uid="uid://coqnkpl4yxbxn" path="res://scenes/candy.tscn" id="9_qsj15"]
+[ext_resource type="PackedScene" uid="uid://deub6kj1mupcm" path="res://blends/environment.blend" id="10_uaf6s"]
+[ext_resource type="PackedScene" uid="uid://csa6jhkfpqegf" path="res://scenes/level_ui.tscn" id="11_dvgok"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f4yb0"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_j8orj"]
+sky_material = SubResource("ProceduralSkyMaterial_f4yb0")
+
+[sub_resource type="Environment" id="Environment_kodal"]
+background_mode = 2
+sky = SubResource("Sky_j8orj")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pc4nb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vmxmf"]
+albedo_color = Color(0.378839, 0.761896, 0.516813, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xeex7"]
+
+[sub_resource type="Curve3D" id="Curve3D_1g8i5"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_6fne7"]
+resource_name = "MovingPlat"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4.03333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_6kdm0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0s8xe"]
+_data = {
+"MovingPlat": SubResource("Animation_6fne7"),
+"RESET": SubResource("Animation_6kdm0")
+}
+
+[sub_resource type="Curve3D" id="Curve3D_38brc"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, -0.5, 0, 0, 0, 0, 0, 0, 0, 0, 2),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_6eh1s"]
+resource_name = "MovingPlat"
+length = 8.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_eufe0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kq21y"]
+_data = {
+"MovingPlat": SubResource("Animation_6eh1s"),
+"RESET": SubResource("Animation_eufe0")
+}
+
+[sub_resource type="Curve3D" id="Curve3D_2ostx"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_xll6q"]
+resource_name = "MovingPlat"
+length = 12.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_4026l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ewsdv"]
+_data = {
+"MovingPlat": SubResource("Animation_xll6q"),
+"RESET": SubResource("Animation_4026l")
+}
+
+[sub_resource type="Curve3D" id="Curve3D_jkmpu"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -54.09, 0, 0, 0, 0, 0, 0, -24.1304, 0.177491, -53.9981, 0, 0, 0, 0, 0, 0, -24.2491, 0.336334, -73.485, 0, 0, 0, 0, 0, 0, -10.3633, -8.54665, -84.0078, 0, 0, 0, 0, 0, 0, -0.582719, -9.5484, -125.505, 0, 0, 0, 0, 0, 0, 0.3461, -0.0519032, -127.318, 0, 0, 0, 0, 0, 0, 0.249315, -0.344826, -144.686, 0, 0, 0, 0, 0, 0, 0.313055, -8.66285, -151.032, 0, 0, 0, 0, 0, 0, 0.201825, -9.17748, -199.996, 0, 0, 0, 0, 0, 0, 0.0603523, -1.00933, -201.204, 0, 0, 0, 0, 0, 0, -0.0821505, -0.607819, -204.819),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 12
+
+[node name="Level3" type="Node3D" node_paths=PackedStringArray("food")]
+script = ExtResource("1_54c32")
+food = NodePath("Ants/StartingAnt/Food")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kodal")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ants" type="Node3D" parent="."]
+
+[node name="StartingAnt" parent="Ants" instance=ExtResource("2_hvpsy")]
+
+[node name="Food" parent="Ants/StartingAnt" instance=ExtResource("3_lixo6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Ant" parent="Ants" instance=ExtResource("2_hvpsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -95)
+
+[node name="Ant2" parent="Ants" instance=ExtResource("2_hvpsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, -163)
+
+[node name="Ant3" parent="Ants" instance=ExtResource("2_hvpsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, -1.4, -187)
+
+[node name="Ant4" parent="Ants" instance=ExtResource("2_hvpsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.3, -140.4)
+
+[node name="Ant5" parent="Ants" instance=ExtResource("2_hvpsy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -1.4, -169)
+
+[node name="Platforms" type="Node3D" parent="."]
+
+[node name="Platform" parent="Platforms" instance=ExtResource("5_2t7eg")]
+skeleton = NodePath("../..")
+
+[node name="Platform2" parent="Platforms" instance=ExtResource("5_2t7eg")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, -16.543, -95)
+skeleton = NodePath("../..")
+
+[node name="EndPlatform" parent="Platforms" instance=ExtResource("5_2t7eg")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, -16.543, -202)
+skeleton = NodePath("../..")
+
+[node name="RectanglePlatform" parent="Platforms" instance=ExtResource("6_ur0mj")]
+transform = Transform3D(3, 0, 0, 0, 1, 0, 0, 0, 0.5, -12.1051, -15.5, -12.7945)
+skeleton = NodePath("../..")
+
+[node name="RectanglePlatform2" parent="Platforms" instance=ExtResource("6_ur0mj")]
+transform = Transform3D(-6.55671e-08, 0, -0.5, 0, 1, 0, 1.5, 0, -2.18557e-08, -24.1051, -15.5, -26.7945)
+skeleton = NodePath("../..")
+
+[node name="RectanglePlatform3" parent="Platforms" instance=ExtResource("6_ur0mj")]
+transform = Transform3D(1.8, 0, 0, 0, 1, 0, 0, 0, 2.24, 0.946336, 14.5, -127.552)
+skeleton = NodePath("../MovingPlatform3/AnimatableBody3D")
+
+[node name="RectanglePlatform4" parent="Platforms" instance=ExtResource("6_ur0mj")]
+transform = Transform3D(0.35, 0, 0, 0, 1, 0, 0, 0, 0.35, 0.024646, -16.5, -163.448)
+
+[node name="RectanglePlatform6" parent="Platforms" instance=ExtResource("6_ur0mj")]
+transform = Transform3D(0.35, 0, 0, 0, 1, 0, 0, 0, 0.35, 15.0246, -16.5, -169.448)
+
+[node name="RectanglePlatform7" parent="Platforms" instance=ExtResource("6_ur0mj")]
+transform = Transform3D(0.35, 0, 0, 0, 1, 0, 0, 0, 0.7, 11.0246, -2.5, -167.448)
+
+[node name="RectanglePlatform8" parent="Platforms" instance=ExtResource("6_ur0mj")]
+transform = Transform3D(-1.5299e-08, 0, 0.7, 0, 1, 0, -0.35, 0, -3.0598e-08, 16.1824, -2.46301, -165.777)
+
+[node name="RectanglePlatform5" parent="Platforms" instance=ExtResource("6_ur0mj")]
+transform = Transform3D(0.35, 0, 0, 0, 0.1, 0, 0, 0, 0.35, 0.024646, 3.5, -140.644)
+
+[node name="MovingPlatform" type="Node3D" parent="Platforms"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -23.8873, -15.5, -43.3221)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Platforms/MovingPlatform"]
+transform = Transform3D(-4.37112e-08, 0, -0.999996, 0, 1, 0, 0.999996, 0, -4.37112e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/MovingPlatform/AnimatableBody3D"]
+mesh = SubResource("CylinderMesh_pc4nb")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmxmf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/MovingPlatform/AnimatableBody3D"]
+shape = SubResource("CylinderShape3D_xeex7")
+
+[node name="Path3D" type="Path3D" parent="Platforms/MovingPlatform"]
+curve = SubResource("Curve3D_1g8i5")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/MovingPlatform/Path3D"]
+transform = Transform3D(-4.37112e-08, 0, -0.999996, 0, 1, 0, 0.999996, 0, -4.37112e-08, 0, 0, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Platforms/MovingPlatform/Path3D/PathFollow3D"]
+remote_path = NodePath("../../../AnimatableBody3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/MovingPlatform"]
+libraries = {
+"": SubResource("AnimationLibrary_0s8xe")
+}
+autoplay = "MovingPlat"
+
+[node name="MovingPlatform2" type="Node3D" parent="Platforms"]
+transform = Transform3D(-15, 0, 1.31134e-06, 0, 15, 0, -1.31134e-06, 0, -15, 31.1127, -15.5, -58.3221)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Platforms/MovingPlatform2"]
+transform = Transform3D(-4.37112e-08, 0, -0.999996, 0, 1, 0, 0.999996, 0, -4.37112e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/MovingPlatform2/AnimatableBody3D"]
+transform = Transform3D(1, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, -0.666669)
+mesh = SubResource("CylinderMesh_pc4nb")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmxmf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/MovingPlatform2/AnimatableBody3D"]
+transform = Transform3D(1, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, -0.666669)
+shape = SubResource("CylinderShape3D_xeex7")
+
+[node name="Path3D" type="Path3D" parent="Platforms/MovingPlatform2"]
+curve = SubResource("Curve3D_1g8i5")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/MovingPlatform2/Path3D"]
+transform = Transform3D(-4.37112e-08, 0, -0.999996, 0, 1, 0, 0.999996, 0, -4.37112e-08, 0, 0, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Platforms/MovingPlatform2/Path3D/PathFollow3D"]
+remote_path = NodePath("../../../AnimatableBody3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/MovingPlatform2"]
+libraries = {
+"": SubResource("AnimationLibrary_0s8xe")
+}
+autoplay = "MovingPlat"
+
+[node name="MovingPlatform3" type="Node3D" parent="Platforms"]
+transform = Transform3D(-15, 0, 1.31134e-06, 0, 15, 0, -1.31134e-06, 0, -15, 0.112656, -22.5, -110.322)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Platforms/MovingPlatform3"]
+transform = Transform3D(-0.999996, 0, -8.74224e-08, 0, 1, 0, 8.74224e-08, 0, -0.999996, 0, 0, -0.314154)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/MovingPlatform3/AnimatableBody3D"]
+transform = Transform3D(1, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_pc4nb")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmxmf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/MovingPlatform3/AnimatableBody3D"]
+transform = Transform3D(1, 0, 1.42109e-14, 0, 1, 0, -1.42109e-14, 0, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_xeex7")
+
+[node name="Path3D" type="Path3D" parent="Platforms/MovingPlatform3"]
+curve = SubResource("Curve3D_38brc")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/MovingPlatform3/Path3D"]
+transform = Transform3D(-0.999996, 0, -8.74224e-08, 0, 1, 0, 8.74224e-08, 0, -0.999996, 0, 0, -0.314154)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Platforms/MovingPlatform3/Path3D/PathFollow3D"]
+remote_path = NodePath("../../../AnimatableBody3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/MovingPlatform3"]
+libraries = {
+"": SubResource("AnimationLibrary_kq21y")
+}
+autoplay = "MovingPlat"
+
+[node name="MovingPlatform4" type="Node3D" parent="Platforms"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -23.8873, -16.5, -187.322)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="Platforms/MovingPlatform4"]
+transform = Transform3D(-4.37112e-08, 0, -0.999996, 0, 1, 0, 0.999996, 0, -4.37112e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Platforms/MovingPlatform4/AnimatableBody3D"]
+mesh = SubResource("CylinderMesh_pc4nb")
+surface_material_override/0 = SubResource("StandardMaterial3D_vmxmf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Platforms/MovingPlatform4/AnimatableBody3D"]
+shape = SubResource("CylinderShape3D_xeex7")
+
+[node name="Path3D" type="Path3D" parent="Platforms/MovingPlatform4"]
+curve = SubResource("Curve3D_2ostx")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Platforms/MovingPlatform4/Path3D"]
+transform = Transform3D(-4.37112e-08, 0, -0.999996, 0, 1, 0, 0.999996, 0, -4.37112e-08, 0, 0, 0)
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Platforms/MovingPlatform4/Path3D/PathFollow3D"]
+remote_path = NodePath("../../../AnimatableBody3D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/MovingPlatform4"]
+libraries = {
+"": SubResource("AnimationLibrary_ewsdv")
+}
+autoplay = "MovingPlat"
+
+[node name="AntLionPlatform" parent="Platforms" instance=ExtResource("5_2t7eg")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, -15.5435, 40)
+skeleton = NodePath("../..")
+
+[node name="PathToAntLion" parent="Platforms" instance=ExtResource("6_ur0mj")]
+transform = Transform3D(-1.31134e-07, 0, -1, 0, 1, 0, 3, 0, -4.37114e-08, 0, -15.5, 20)
+skeleton = NodePath("../..")
+
+[node name="Candies" type="Node3D" parent="."]
+
+[node name="Candy1" parent="Candies" instance=ExtResource("9_qsj15")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.0592, 0.2, -58.0328)
+
+[node name="Candy2" parent="Candies" instance=ExtResource("9_qsj15")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.13947, 6.1732, -141.225)
+
+[node name="Candy3" parent="Candies" instance=ExtResource("9_qsj15")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.9619, -0.575057, -169.168)
+
+[node name="AntLionPath" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 41)
+curve = SubResource("Curve3D_jkmpu")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="AntLionPath"]
+transform = Transform3D(1, 0, 0, 0, 0.999998, 0, 0, 0, 0.999998, 0, 0, 0)
+rotation_mode = 0
+
+[node name="AntLion" parent="AntLionPath/PathFollow3D" instance=ExtResource("4_it3ro")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="DeathPit" parent="." instance=ExtResource("8_v0t6g")]
+
+[node name="Goal" parent="." instance=ExtResource("7_mgon1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -209)
+
+[node name="environment" parent="." instance=ExtResource("10_uaf6s")]
+transform = Transform3D(2.26807, 0, 0, 0, 3.05681, 0, 0, 0, 12, 0, -78.0795, -25.4612)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 85.7116, -35.0516)
+omni_range = 295.294
+omni_attenuation = 0.25
+
+[node name="LevelUI" parent="." instance=ExtResource("11_dvgok")]

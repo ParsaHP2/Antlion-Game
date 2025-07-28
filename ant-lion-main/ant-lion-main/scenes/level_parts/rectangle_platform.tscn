@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://br64d54u6l7xa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_kq772"]
+size = Vector3(10, 30, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tvxbn"]
+albedo_color = Color(0.768627, 0.643137, 0.517647, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ft2wc"]
+data = PackedVector3Array(-5, 15, 5, 5, 15, 5, -5, -15, 5, 5, 15, 5, 5, -15, 5, -5, -15, 5, 5, 15, -5, -5, 15, -5, 5, -15, -5, -5, 15, -5, -5, -15, -5, 5, -15, -5, 5, 15, 5, 5, 15, -5, 5, -15, 5, 5, 15, -5, 5, -15, -5, 5, -15, 5, -5, 15, -5, -5, 15, 5, -5, -15, -5, -5, 15, 5, -5, -15, 5, -5, -15, -5, 5, 15, 5, -5, 15, 5, 5, 15, -5, -5, 15, 5, -5, 15, -5, 5, 15, -5, -5, -15, 5, 5, -15, 5, -5, -15, -5, 5, -15, 5, 5, -15, -5, -5, -15, -5)
+
+[node name="RectanglePlatform" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -15, 0)
+mesh = SubResource("BoxMesh_kq772")
+surface_material_override/0 = SubResource("StandardMaterial3D_tvxbn")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ft2wc")

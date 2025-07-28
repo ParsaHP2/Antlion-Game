@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyikdiipad1ft"]
+
+[ext_resource type="Script" path="res://scripts/SlipperyPlat.gd" id="1_cgmfs"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_xbg44"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b611l"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_waslt"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmxh8"]
+size = Vector3(1, 2, 1)
+
+[node name="SlipperyPlatform" type="Node3D"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="."]
+transform = Transform3D(0.999996, 0, 0, 0, 1, 0, 0, 0, 0.999996, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AnimatableBody3D"]
+transform = Transform3D(1, 0, 2.98023e-08, 0, 2, 0, -2.98023e-08, 0, 1, 0, 0, 0)
+mesh = SubResource("BoxMesh_xbg44")
+surface_material_override/0 = SubResource("StandardMaterial3D_b611l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D"]
+shape = SubResource("BoxShape3D_waslt")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0666667, 0)
+collision_mask = 5
+gravity_space_override = 3
+script = ExtResource("1_cgmfs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_dmxh8")
+
+[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
+[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
